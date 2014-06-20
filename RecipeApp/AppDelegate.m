@@ -7,12 +7,21 @@
 //
 
 #import "AppDelegate.h"
+#import "homeViewController.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    //[[NSNotificationCenter defaultCenter] addObserverForName:nil object:nil queue:nil usingBlock:^(NSNotification *n) { NSLog(@"notification: %@", n); }];
+    
+    [Parse setApplicationId:@"fkYmNJlu5oHo1g5xsLR36WmjNdrqbf7TVP2VT983"
+                  clientKey:@"jvvxyKv4Pm1P3ObWr5Z1JB6m9AqfWDHcgKHCLyre"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     return YES;
 }
 							
@@ -20,12 +29,16 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    //homeViewController * View = [[homeViewController alloc] init];
+    //[View pause:1];
+    //[View addOverlay:4];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -41,6 +54,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    /*
+    homeViewController * View = [[homeViewController alloc] init];
+    [View pause:1];
+    [View addOverlay:2];
+     */
 }
+
+
 
 @end
