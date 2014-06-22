@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface selectionViewController : UIViewController 
+@interface selectionViewController : UIViewController
 {
-    NSMutableArray * Category;
+    NSArray * Category;
 }
+
+
 
 @end
