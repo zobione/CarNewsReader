@@ -140,11 +140,12 @@
     
     Title = [[[[name valueForKey:@"channel"] valueForKey:@"item" ] valueForKey:@"title"] valueForKey:@"text"];
     //NSString *test2 = xmlDictionary[1];
-    //NSLog(@"%@", NewsWithoutHTML);
-    //NSLog(@"%@", Title);
+    NSLog(@"%@", _News);
+    NSLog(@"%@", Title);
     
     
     //Fetch weather
+    /*
     NSData *weather = [[NSData alloc] initWithContentsOfURL:
                               [NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139"]];
 
@@ -155,7 +156,9 @@
                                        error:&error2];
     
     NSLog(@"%@", Meteo);
-    
+    */
+     
+     
     //Animation
     //[self drawBezierAnimate:1];
     //[self Animate:1];

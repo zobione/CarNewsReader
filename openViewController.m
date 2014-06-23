@@ -7,8 +7,9 @@
 //
 
 #import "openViewController.h"
-#import "homeViewController.h"
-#import "loginViewController.h"
+//#import "homeViewController.h"
+#import "choice2ViewController.h"
+#import "initialViewController.h"
 #import <Parse/Parse.h>
 
 @interface openViewController ()
@@ -39,12 +40,13 @@
         // do stuff with the user
         NSLog(@"Logged");
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        homeViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"home"];
+        initialViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"initial"];
         [self presentViewController:lvc animated:YES completion:nil];
     }  else {
-      /*  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        loginViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"login"];
-        [self presentViewController:lvc animated:YES completion:nil]; */
+        NSLog(@"Login or sign up required");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        choice2ViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"choice2"];
+        [self presentViewController:lvc animated:YES completion:nil];
     }
 }
 

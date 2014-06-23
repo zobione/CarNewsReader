@@ -8,8 +8,8 @@
 
 #import "SignUpViewController.h"
 #import <Parse/Parse.h>
-#import "selectionViewController.h"
-
+//#import "selectionViewController.h"
+#import "initialViewController.h"
 
 @interface SignUpViewController ()
 
@@ -63,7 +63,7 @@
                 //The registration was successful, go to the wall
                 //[self performSegueWithIdentifier:@"SignupSuccesful" sender:self];
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-                selectionViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"selection"];
+                initialViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"initial"];
                 [self presentViewController:lvc animated:YES completion:nil];
                 
             } else {

@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface selectionViewController : UIViewController
+@interface selectionViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSArray * Category;
+    NSArray * CategoryTitle;
+    NSMutableArray * PassCategory;
+    NSMutableArray * URLs;
 }
 
-
+- (IBAction)Selection:(id)sender;
+@property (strong, nonatomic) UICollectionView *collectionView;
+@property (nonatomic, retain) CLLocationManager *locationManager;
 
 @end

@@ -65,6 +65,10 @@
 		23C2DD721957546500C3B5E7 /* thai_shrimp_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23C2DD611957546500C3B5E7 /* thai_shrimp_cake.jpg */; };
 		23C2DD731957546500C3B5E7 /* vegetable_curry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23C2DD621957546500C3B5E7 /* vegetable_curry.jpg */; };
 		23C2DD741957546500C3B5E7 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23C2DD631957546500C3B5E7 /* white_chocolate_donut.jpg */; };
+		23C2DD77195762C100C3B5E7 /* choiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C2DD76195762C100C3B5E7 /* choiceViewController.m */; };
+		23C2DD7B195763E100C3B5E7 /* choice2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C2DD7A195763E100C3B5E7 /* choice2ViewController.m */; };
+		23C2DD7E195784F200C3B5E7 /* initialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C2DD7D195784F200C3B5E7 /* initialViewController.m */; };
+		23C2DD811957BDD400C3B5E7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C2DD801957BDD400C3B5E7 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,20 +118,20 @@
 		23ADF503194E214000D0BC5E /* Stop200x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stop200x200.png; sourceTree = "<group>"; };
 		23B2F02B193FF62200D722AE /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		23B2F02C193FF62200D722AE /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
-		23C2DC92195109D000850CA1 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loginViewController.h; path = ../loginViewController.h; sourceTree = "<group>"; };
-		23C2DC93195109D000850CA1 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = loginViewController.m; path = ../loginViewController.m; sourceTree = "<group>"; };
+		23C2DC92195109D000850CA1 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
+		23C2DC93195109D000850CA1 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		23C2DC9719510A4A00850CA1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		23C2DC9919510A6600850CA1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		23C2DC9B19510A7000850CA1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		23C2DC9D19510A8100850CA1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		23C2DC9F19510A8D00850CA1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		23C2DCA119510AB700850CA1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		23C2DCA319510F4D00850CA1 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = ../SignUpViewController.h; sourceTree = "<group>"; };
-		23C2DCA419510F4D00850CA1 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = ../SignUpViewController.m; sourceTree = "<group>"; };
+		23C2DCA319510F4D00850CA1 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		23C2DCA419510F4D00850CA1 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		23C2DCA61951156D00850CA1 /* selectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = selectionViewController.h; path = ../selectionViewController.h; sourceTree = "<group>"; };
 		23C2DCA71951156E00850CA1 /* selectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = selectionViewController.m; path = ../selectionViewController.m; sourceTree = "<group>"; };
-		23C2DCA9195119B700850CA1 /* openViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openViewController.h; path = ../openViewController.h; sourceTree = "<group>"; };
-		23C2DCAA195119B700850CA1 /* openViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = openViewController.m; path = ../openViewController.m; sourceTree = "<group>"; };
+		23C2DCA9195119B700850CA1 /* openViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openViewController.h; sourceTree = "<group>"; };
+		23C2DCAA195119B700850CA1 /* openViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = openViewController.m; sourceTree = "<group>"; };
 		23C2DD4A1954DA9700C3B5E7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		23C2DD531957546400C3B5E7 /* angry_birds_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = angry_birds_cake.jpg; sourceTree = "<group>"; };
 		23C2DD541957546400C3B5E7 /* creme_brelee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = creme_brelee.jpg; sourceTree = "<group>"; };
@@ -146,6 +150,14 @@
 		23C2DD611957546500C3B5E7 /* thai_shrimp_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thai_shrimp_cake.jpg; sourceTree = "<group>"; };
 		23C2DD621957546500C3B5E7 /* vegetable_curry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vegetable_curry.jpg; sourceTree = "<group>"; };
 		23C2DD631957546500C3B5E7 /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
+		23C2DD75195762C100C3B5E7 /* choiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = choiceViewController.h; sourceTree = "<group>"; };
+		23C2DD76195762C100C3B5E7 /* choiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = choiceViewController.m; sourceTree = "<group>"; };
+		23C2DD79195763E100C3B5E7 /* choice2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = choice2ViewController.h; sourceTree = "<group>"; };
+		23C2DD7A195763E100C3B5E7 /* choice2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = choice2ViewController.m; sourceTree = "<group>"; };
+		23C2DD7C195784F200C3B5E7 /* initialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = initialViewController.h; path = ../initialViewController.h; sourceTree = "<group>"; };
+		23C2DD7D195784F200C3B5E7 /* initialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = initialViewController.m; path = ../initialViewController.m; sourceTree = "<group>"; };
+		23C2DD7F1957BDD400C3B5E7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		23C2DD801957BDD400C3B5E7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +201,7 @@
 		23571736193D7BB000C890B2 = {
 			isa = PBXGroup;
 			children = (
+				23C2DD781957638F00C3B5E7 /* SignUp Login */,
 				23C2DD521957546400C3B5E7 /* RecipePhotoImagePack */,
 				23ADF4FF194E212C00D0BC5E /* images */,
 				23AEFF541942550F0007E451 /* XMLREADER */,
@@ -235,6 +248,10 @@
 		23571748193D7BB000C890B2 /* RecipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				23C2DD7F1957BDD400C3B5E7 /* MBProgressHUD.h */,
+				23C2DD801957BDD400C3B5E7 /* MBProgressHUD.m */,
+				23C2DD7C195784F200C3B5E7 /* initialViewController.h */,
+				23C2DD7D195784F200C3B5E7 /* initialViewController.m */,
 				23571751193D7BB000C890B2 /* AppDelegate.h */,
 				23571752193D7BB000C890B2 /* AppDelegate.m */,
 				2357175A193D7BB000C890B2 /* Images.xcassets */,
@@ -243,12 +260,6 @@
 				2357177C193D7ECF00C890B2 /* homeViewController.m */,
 				23C2DCA61951156D00850CA1 /* selectionViewController.h */,
 				23C2DCA71951156E00850CA1 /* selectionViewController.m */,
-				23C2DC92195109D000850CA1 /* loginViewController.h */,
-				23C2DC93195109D000850CA1 /* loginViewController.m */,
-				23C2DCA319510F4D00850CA1 /* SignUpViewController.h */,
-				23C2DCA419510F4D00850CA1 /* SignUpViewController.m */,
-				23C2DCA9195119B700850CA1 /* openViewController.h */,
-				23C2DCAA195119B700850CA1 /* openViewController.m */,
 				23571754193D7BB000C890B2 /* Main.storyboard */,
 			);
 			path = RecipeApp;
@@ -338,6 +349,23 @@
 				23C2DD631957546500C3B5E7 /* white_chocolate_donut.jpg */,
 			);
 			path = RecipePhotoImagePack;
+			sourceTree = "<group>";
+		};
+		23C2DD781957638F00C3B5E7 /* SignUp Login */ = {
+			isa = PBXGroup;
+			children = (
+				23C2DD79195763E100C3B5E7 /* choice2ViewController.h */,
+				23C2DD7A195763E100C3B5E7 /* choice2ViewController.m */,
+				23C2DD75195762C100C3B5E7 /* choiceViewController.h */,
+				23C2DD76195762C100C3B5E7 /* choiceViewController.m */,
+				23C2DC92195109D000850CA1 /* loginViewController.h */,
+				23C2DC93195109D000850CA1 /* loginViewController.m */,
+				23C2DCA319510F4D00850CA1 /* SignUpViewController.h */,
+				23C2DCA419510F4D00850CA1 /* SignUpViewController.m */,
+				23C2DCA9195119B700850CA1 /* openViewController.h */,
+				23C2DCAA195119B700850CA1 /* openViewController.m */,
+			);
+			name = "SignUp Login";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,10 +497,14 @@
 				23571753193D7BB000C890B2 /* AppDelegate.m in Sources */,
 				23C2DC94195109D000850CA1 /* loginViewController.m in Sources */,
 				23C2DCA519510F4D00850CA1 /* SignUpViewController.m in Sources */,
+				23C2DD7B195763E100C3B5E7 /* choice2ViewController.m in Sources */,
 				2357174F193D7BB000C890B2 /* main.m in Sources */,
 				23B2F02D193FF62200D722AE /* XMLReader.m in Sources */,
+				23C2DD811957BDD400C3B5E7 /* MBProgressHUD.m in Sources */,
 				2357177D193D7ECF00C890B2 /* homeViewController.m in Sources */,
+				23C2DD77195762C100C3B5E7 /* choiceViewController.m in Sources */,
 				23C2DCA81951156E00850CA1 /* selectionViewController.m in Sources */,
+				23C2DD7E195784F200C3B5E7 /* initialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

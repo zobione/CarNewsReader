@@ -8,7 +8,8 @@
 
 #import "loginViewController.h"
 #import <Parse/Parse.h>
-#import "homeViewController.h"
+//#import "homeViewController.h"
+#import "initialViewController.h"
 
 @interface loginViewController ()
 
@@ -64,7 +65,7 @@
         } else {
             //open the wall
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            homeViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"home"];
+            initialViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"initial"];
             [self presentViewController:lvc animated:YES completion:nil];
         }
     }];
