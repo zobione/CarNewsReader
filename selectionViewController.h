@@ -15,6 +15,9 @@
     NSArray * CategoryTitle;
     NSMutableArray * PassCategory;
     NSMutableArray * URLs;
+    NSArray *Source;
+    NSMutableArray *SourceMutable;
+    NSInteger NbURL;
 }
 
 - (IBAction)Selection:(id)sender;

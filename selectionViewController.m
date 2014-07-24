@@ -10,6 +10,9 @@
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "homeViewController.h"
+#import "XMLReader.h"
+#import "NSDate+InternetDateTime.h"
+#import "RSSFeed.h"
 
 @interface selectionViewController ()
 
@@ -35,6 +38,8 @@
 
     
     [super viewDidLoad];
+    
+
     
     // Do any additional setup after loading the view.
     Category = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
@@ -73,6 +78,9 @@
     
     PassCategory = [[NSMutableArray alloc] init];
     URLs = [[NSMutableArray alloc] init];
+    SourceMutable = [[NSMutableArray alloc] init];
+    
+    NbURL = 0;
 }
 
 
@@ -163,6 +171,13 @@
 
 
 - (IBAction)Selection:(id)sender {
+    NSMutableArray *arrayContent = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayTitle = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayDate = [[NSMutableArray alloc] init];
+    NSMutableArray *arraySource = [[NSMutableArray alloc] init];
+    NSMutableArray *arraySource2 = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayRSSFeed = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayURL = [[NSMutableArray alloc] init];
     
     long n = PassCategory.count;
     
@@ -177,19 +192,140 @@
         PFObject *element = nil;
         for (element in CatUrl) {
             [URLs addObject:element[@"URL"]];
+            [SourceMutable addObject:element[@"Fournisseur"]];
         }
         
     }
+    
     NSLog(@"%@", URLs);
+    NSLog(@"%@", SourceMutable);
+        
+        for (NSString *urls in URLs) {
+            
+            NSData *data=[NSData dataWithContentsOfURL:[NSURL URLWithString:urls]];
+            // Parse the XML into a dictionary
+            NSError *parseError = nil;
+            NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:data error:&parseError];
+            NSArray *articles = [[xmlDictionary valueForKey:@"rss"] valueForKey:@"channel"];
+            //NSLog(@"%@", articles);
+            /*
+            double c =[name count];
+            //NSLog(@"%D",c);
+            for (NSArray *items in name) {
+                //NSLog(@"%@", items);
+                /*
+                NSString *titre = [[[items valueForKey:@"item"]valueForKey:@"title"] valueForKey:@"text"];
+                //NSString *cont = [[[items valueForKey:@"item"]valueForKey:@"description"] valueForKey:@"text"];
+                NSString *date = [[[items valueForKey:@"item"]valueForKey:@"pubDate"] valueForKey:@"text"];
+                NSDate *articleDate = [NSDate dateFromInternetDateTimeString:date formatHint:DateFormatHintRFC822];
+                [content addObject:articleDate];
+                [content2 addObject:titre];
+             
+            }
+             */
+            
+            //NSArray *contenu1= [[[[name valueForKey:@"channel"] valueForKey:@"item" ] valueForKey:@"description"] valueForKey:@"text"];
+            //NSArray *title1= [[[[name valueForKey:@"channel"] valueForKey:@"item" ] valueForKey:@"title"] valueForKey:@"text"];
+            NSArray *date= [[[articles  valueForKey:@"item" ] valueForKey:@"pubDate"] valueForKey:@"text"];
+            NSArray *content= [[[articles  valueForKey:@"item" ] valueForKey:@"description"] valueForKey:@"text"];
+            NSArray *title= [[[articles  valueForKey:@"item" ] valueForKey:@"title"] valueForKey:@"text"];
+            NSArray *urls= [[[articles  valueForKey:@"item" ] valueForKey:@"link"] valueForKey:@"text"];
+
+            //Source = [Source initWithArray:SourceMutable];
+            //NSLog(@"%@",Source);
+            //Ajouter les images des sources
+            NSLog(@"test: %@", [SourceMutable objectAtIndex:NbURL]);
+            
+            
+            NSInteger dt = [content count];
+            for (int i = 0; i<dt; i++ ) {
+                [arraySource insertObject:[SourceMutable objectAtIndex:NbURL] atIndex:i];
+                NSLog(@"%@", [arraySource objectAtIndex:i]);
+                NSLog(@"%@", [urls objectAtIndex:i]);
+            }
+            
+            
+            //NSLog(@"%@", arraySource);
+            //NSArray *contenu = [[name valueForKey:@"channel"] valueForKey:@"item" ];
+            //[content addObjectsFromArray:contenu1];
+            //[title addObjectsFromArray:title1];
+            [arrayDate addObjectsFromArray:date];
+            [arrayTitle addObjectsFromArray:title];
+            [arrayContent addObjectsFromArray:content];
+            [arrayURL addObjectsFromArray:urls];
+            [arraySource2 addObjectsFromArray:arraySource];
+            
+            //NSLog(@"url utilisée: %@", urls);
+            //NSLog(@"%@", content);
+            //NSLog(@"%@", content2);
+            NbURL = NbURL+1;
+        }
+        
+        double c = [arrayContent count];
+        NSLog(@"%D",c);
+        for (int i =0; i<c; i++) {
+            NSString *date = [arrayDate objectAtIndex:i];
+            NSString *title = [arrayTitle objectAtIndex:i];
+            NSString *content = [arrayContent objectAtIndex:i];
+            NSString *source = [arraySource2 objectAtIndex:i];
+            NSString *URL = [arrayURL objectAtIndex:i];
+            NSDate *articleDate = [NSDate dateFromInternetDateTimeString:date formatHint:DateFormatHintRFC822];
+            //NSLog(@"%@",articleDate);
+            RSSFeed *object = [[RSSFeed alloc] init];
+            object.Date = articleDate;
+            object.Content = content;
+            object.Title = title;
+            object.Source = source;
+            object.URL = URL;
+            [arrayRSSFeed addObject:object];
+        }
+        
+        //NSLog(@"%@", arrayRSSFeed);
+        
+        //RSSFeed *object = [[RSSFeed alloc] init];
+        //[arrayRSSFeed sortedArrayUsingSelector:@selector(compare:)];
+        //[arrayRSSFeed sortedArrayUsingSelector:@selector(compare:)];
+        
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Date"
+                                                     ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        NSArray *sortedArray;
+        sortedArray = [arrayRSSFeed sortedArrayUsingDescriptors:sortDescriptors];
+        
+        for (RSSFeed *test in sortedArray)  {
+          //  NSLog(@"%@",test.Content);
+            //NSLog(@"%@",test.Date);
+            NSLog(@"%@",test.Source);
+            NSLog(@"%@",test.URL);
+            //NSLog(@"%@",test.Title);
+        }
+        /*
+        RSSFeed *test = [arrayRSSFeed objectAtIndex:1];
+        NSLog(@"%@",test.Content);
+        NSLog(@"%@",test.Date);
+        NSLog(@"%@",test.Date);
+        */
+        //NSLog(@"Content: %@", content2);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            homeViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"home"];
+            //lvc.News = content;
+            lvc.news = sortedArray;
+            //lvc.Title = title;
+            [self presentViewController:lvc animated:YES completion:nil];
+            
         });
     });
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    homeViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"home"];
-   [self.navigationController pushViewController:lvc animated:YES];
+    
+
+    
     
 }
+
+
 @end

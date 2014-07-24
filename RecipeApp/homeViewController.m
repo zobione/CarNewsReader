@@ -10,9 +10,11 @@
 #import "XMLReader.h"
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "RSSFeed.h"
 
 @interface homeViewController ()
 
+@property (nonatomic, strong) NSMutableArray *items;
 
 @end
 
@@ -38,6 +40,31 @@
 @synthesize latitude;
 @synthesize longitude;
 @synthesize ActionArticle;
+@synthesize feedSource;
+@synthesize URL;
+
+@synthesize carousel;
+@synthesize items;
+
+-(void)awakeFromNib
+{
+    self.items = [NSMutableArray array];
+    for (int i = 0; i < 1000; i++)
+    {
+        [items addObject:@(i)];
+    }
+
+}
+
+- (void)dealloc
+{
+    //it's a good idea to set these to nil here to avoid
+    //sending messages to a deallocated viewcontroller
+    
+    carousel.delegate = nil;
+    carousel.dataSource = nil;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +86,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    carousel.type = iCarouselTypeRotary;
+    carousel.scrollEnabled = false;
+    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Prout" style:UIBarButtonItemStyleDone target:nil action:nil];
+    
     musicPlayer = [MPMusicPlayerController iPodMusicPlayer];
     [self registerMediaPlayerNotifications];
     
@@ -78,6 +110,25 @@
     Titre.numberOfLines=2;
     Titre.lineBreakMode= NSLineBreakByClipping;
     [self.view addSubview:Titre];
+    
+    feedSource = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 150, self.view.frame.size.height/5 -30, 300, 20)];
+    [feedSource setTextColor:[UIColor blackColor]];
+    [feedSource setBackgroundColor:[UIColor clearColor]];
+    [feedSource setFont:[UIFont fontWithName: @"Trebuchet MS" size: 12.0f]];
+    feedSource.textAlignment=1;
+    feedSource.numberOfLines=2;
+    feedSource.lineBreakMode= NSLineBreakByClipping;
+    [self.view addSubview:feedSource];
+    
+    URL = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 150, self.view.frame.size.height/5 -60, 300, 20)];
+    [URL setTextColor:[UIColor blackColor]];
+    [URL setBackgroundColor:[UIColor clearColor]];
+    [URL setFont:[UIFont fontWithName: @"Trebuchet MS" size: 12.0f]];
+    URL.textAlignment=1;
+    URL.numberOfLines=2;
+    URL.lineBreakMode= NSLineBreakByClipping;
+    [self.view addSubview:URL];
+
     
     //Define location
 
@@ -108,7 +159,8 @@
     /*
      http://images.apple.com/main/rss/hotnews/hotnews.rss
      http://news.yahoo.com/rss/
-     */
+     
+    
     
     NSString *theURL2 = @"http://feeds.feedburner.com/businessinsider?format=xml";
     NSData *data2=[NSData dataWithContentsOfURL:[NSURL URLWithString:theURL2]];
@@ -142,7 +194,7 @@
     //NSString *test2 = xmlDictionary[1];
     NSLog(@"%@", _News);
     NSLog(@"%@", Title);
-    
+    */
     
     //Fetch weather
     /*
@@ -201,12 +253,13 @@
     }
     
     //Image
+    /*
     Content = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 75, self.view.frame.size.height/2 - 75, 150, 150)];
     [self.view addSubview:Content];
     
     Icon = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 100, self.view.frame.size.height, 200, 200)];
     [self.view addSubview:Icon];
-    
+    */
 
     
 
@@ -387,8 +440,10 @@
 -(void) actionParler:(BOOL)test
 {
     //do
-    //[self Parler:NbArticle];
+    [self Parler:NbArticle];
+    [carousel scrollToItemAtIndex:NbArticle animated:1];
     
+    /*
     if (ActionArticle == 1) {
         [self actionMusic:1];
         ActionArticle = 0;
@@ -397,7 +452,7 @@
         ActionArticle = ActionArticle +1;
     }
     
-
+     */
 }
 
 -(void) actionMusic:(BOOL)test
@@ -462,8 +517,11 @@
 
 -(void) Parler:(int) article{
     //formatage
-    
-        NSString *Speech = _News[article];
+        RSSFeed *object = [[RSSFeed alloc] init];
+        object = [_News objectAtIndex:article];
+        URL.text = object.URL;
+    //NSLog(@"%@", object.URL);
+        NSString *Speech = object.Content;
         //NSLog(@"Avant formatage %@", Speech);
     
     /*
@@ -486,7 +544,8 @@
         utterance.postUtteranceDelay = 1;
         [synth speakUtterance:utterance];
     
-        Titre.text = Title[article];
+        Titre.text = object.Title;
+        feedSource.text =object.Source;
         Content.image = [UIImage imageNamed:@"rss.png"];
         NSLog(@"article n° %D", article);
     
@@ -608,17 +667,48 @@
     
 }
 
+#pragma mark -
+#pragma mark iCarousel methods
 
-
-
-
-
-
-
--(void)Weather:(BOOL)test
+- (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    //do
+    //return the total number of items in the carousel
+    return [items count];
 }
+
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
+{
+    UILabel *label = nil;
+    
+    //create new view if no view is available for recycling
+    if (view == nil)
+    {
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 200.0f)];
+        ((UIImageView *)view).image = [UIImage imageNamed:@"page.png"];
+        view.contentMode = UIViewContentModeCenter;
+        label = [[UILabel alloc] initWithFrame:view.bounds];
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = UITextAlignmentCenter;
+        label.font = [label.font fontWithSize:50];
+        label.tag = 1;
+        [view addSubview:label];
+    }
+    else
+    {
+        //get a reference to the label in the recycled view
+        label = (UILabel *)[view viewWithTag:1];
+    }
+    
+    //set item label
+    //remember to always set any properties of your carousel item
+    //views outside of the `if (view == nil) {...}` check otherwise
+    //you'll get weird issues with carousel item content appearing
+    //in the wrong place in the carousel
+    label.text = [items[index] stringValue];
+    
+    return view;
+}
+
 
 
 

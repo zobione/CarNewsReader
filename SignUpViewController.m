@@ -63,7 +63,7 @@
                 //The registration was successful, go to the wall
                 //[self performSegueWithIdentifier:@"SignupSuccesful" sender:self];
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-                initialViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"initial"];
+                initialViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"selection"];
                 [self presentViewController:lvc animated:YES completion:nil];
                 
             } else {

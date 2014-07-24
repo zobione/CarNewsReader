@@ -12,8 +12,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <CoreAudio/CoreAudioTypes.h>
+#import "iCarousel.h"
 
-@interface homeViewController : UIViewController < AVSpeechSynthesizerDelegate, MPMediaPickerControllerDelegate>
+@interface homeViewController : UIViewController < AVSpeechSynthesizerDelegate, MPMediaPickerControllerDelegate, iCarouselDataSource, iCarouselDelegate>
 {
     MPMusicPlayerController *musicPlayer;
     bool *meteo;
@@ -27,7 +28,7 @@
 
 
 @property (nonatomic, retain) MPMusicPlayerController *musicPlayer;
-@property (weak, nonatomic) IBOutlet UIView *Curve;
+
 
 @property (strong, nonatomic) NSArray *News; //Contain all the news
 @property (strong, nonatomic) NSArray *News2; //Contain all the news
@@ -49,7 +50,9 @@
 @property (assign, nonatomic) int ActionArticle; //use to select what kind for article to play
 
 
-@property (strong, nonatomic) UILabel *Titre; //display the state of the app
+@property (strong, nonatomic) UILabel *Titre;//display the state of the app
+@property (strong, nonatomic) UILabel *URL;
+@property (strong, nonatomic) UILabel *feedSource; //display the state of the app
 @property (strong, nonatomic) UIImageView *Content; //display the state of the app
 @property (strong, nonatomic) UIImageView *Icon; //display the state of the app
 
@@ -59,5 +62,7 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, assign) NSString *longitude;
 @property (nonatomic, assign) NSString *latitude;
+
+@property (weak, nonatomic) IBOutlet iCarousel *carousel;
 
 @end
